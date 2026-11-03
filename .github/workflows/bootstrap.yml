@@ -1,3 +1,4 @@
+
 name: Extract Coco Android Project
 
 on:
@@ -8,7 +9,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write
 
 jobs:
   extract:
@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Android project
         run: |
@@ -39,5 +37,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add -A
+          git reset -- .github/workflows/build-apk.yml
+
           git commit -m "Extract Coco Android project"
           git push
