@@ -1,4 +1,3 @@
-
 name: Extract Coco Android Project
 
 on:
@@ -9,10 +8,12 @@ on:
 
 permissions:
   contents: write
+  workflows: write
 
 jobs:
   extract:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,7 +25,7 @@ jobs:
           ZIP_FILE=$(find . -maxdepth 1 -name "*.zip" -print -quit)
 
           if [ -z "$ZIP_FILE" ]; then
-            echo "No project ZIP found. Nothing to extract."
+            echo "No project ZIP found."
             exit 0
           fi
 
